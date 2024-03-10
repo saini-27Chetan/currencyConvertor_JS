@@ -32,11 +32,7 @@ const updateFlagImg = (element) => {
     img.src = imgURL;
 }
 
-const btn = document.getElementById('convertBtn');
-
-btn.addEventListener('click', async(event) => {
-    event.preventDefault();
-
+const updateExchangeRate = async() => {
     let amount = document.getElementById('amount');
     let amountValue = amount.value; 
 
@@ -61,4 +57,17 @@ btn.addEventListener('click', async(event) => {
 
     let message = document.getElementById('message');
     message.innerText = `${amountValue} ${fromCurr.value} = ${convertedAmount} ${toCurr.value}`;
+}
+
+const btn = document.getElementById('convertBtn');
+btn.addEventListener('click', async(event) => {
+    event.preventDefault();
+
+    updateExchangeRate();
+})
+
+// When our page will load at the first then this event will trigger
+// Just to show default exchange rate from USD to INR 
+window.addEventListener('load', () =>{
+    updateExchangeRate();
 })
